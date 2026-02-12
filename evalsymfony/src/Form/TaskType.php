@@ -22,7 +22,7 @@ class TaskType extends AbstractType
                 'label' => 'Qu\'est ce que tu dois faire ?'
             ])
             ->add('expiredAt', DateTimeType::class, [
-                'label' => 'tu compte la finir quand ?',
+                'label' => 'Tu compte la finir quand ?',
                 'widget' => 'single_text'
             ])
         ;
