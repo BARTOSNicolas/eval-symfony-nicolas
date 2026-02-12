@@ -18,6 +18,10 @@ class TaskService {
             if (!$task) {
                 throw new \Exception('La tâche n\'existe pas' );
             }
+            //Ajout de la date
+            $task->setCreatedAt(new \DateTimeImmutable());
+            // Status par default (au cas ou ...)
+            $task->setStatus(false);
             // Ajout en BDD
             $this->em->persist($task);
             $this->em->flush();
