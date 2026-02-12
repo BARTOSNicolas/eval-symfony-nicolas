@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter votre (grosse) tâche{% endblock %}
+
+{% block body %}
+<style>
+.container {
+    max-width: 50vw;
+}
+</style>
+
+<div class="container ">
+    <h1>Ajouter votre tâche</h1>
+    <div class="form">
+    {% if form is defined %}
+        {{ form_start(form) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.content) }}
+            {{ form_row(form.expiredAt) }}
+
+            <button type="submit">Ajouter</button>
+        {{ form_end(form) }}
+    {% endif %}
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="flash-{{ label }}">{{ message }}</div>
+        {% endfor %}
+    {% endfor %}
+
+    <a href="{{ path('app_task_all') }}"><button>Retour</button></a>
+    </div>
+
+</div>
+{% endblock %}

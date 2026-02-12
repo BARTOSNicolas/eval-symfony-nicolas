@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes vos tâches (même les plus sales){% endblock %}
+
+{% block body %}
+<style>
+.container {
+    max-width: 50vw;
+}
+</style>
+
+<div class="container">
+    <h1>Toutes vos tâches</h1>
+
+    {% if tasks is defined %}
+        <ul>
+            {% for task in tasks %}
+                <details>
+                    <summary role="button">{{ task.title }}</summary>
+                    <p>Contenu de la tâche :</p>
+                    <p>{{ task.content }}</p>
+                    <p>Créer le : {{ task.createdAt | date('d/m/Y H:i') }}</p>
+                    <p>Doit etre faite pour le : {{ task.expiredAt | date('d/m/Y H:i') }}</p>
+                    <p>Status :{{ task.status ? 'Terminée' : 'En cours' }}</p>
+                </details>
+                {% else %}
+                <p>Pas de tâches</p>
+            {% endfor %}
+        </ul>
+
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
+        <a href="{{ path('app_task_add') }}"><button>Ajouter une tâche</button></a>
+
+    {% endif %}
+
+</div>
+{% endblock %}
